@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "id": "l35af",
+      "name": "Nikon L35AF \"Pikaichi\"",
+      "description": "The groundbreaking autofocus compact camera with sharp 35mm f/2.8 lens. Fully serviced and tested to original specifications.",
+      "price": 299,
+      "currency": "USD",
+      "inStock": true,
+      "stripePriceLink": "https://buy.stripe.com/your-real-link-here",
+      "etsyLink": "https://www.etsy.com/uk/listing/1862157468/nikon-l35af-pikaichi-serviced",
+      "images": [
+        "images/L35AF-0.webp",
+        "images/L35AF-1.webp",
+        "images/L35AF-2.webp"
+      ]
+    },
+    {
+      "id": "l35ad",
+      "name": "Nikon L35AD \"Pikaichi Quartz Date\"",
+      "description": "The advanced version of the L35AF with date imprinting and improved electronics. Fully restored and calibrated to factory specs.",
+      "price": 349,
+      "currency": "USD",
+      "inStock": true,
+      "stripePriceLink": "https://buy.stripe.com/your-real-link-here",
+      "etsyLink": "https://www.etsy.com/uk/listing/1876841109/nikon-l35ad-pikaichi-quartz-date",
+      "images": [
+        "images/L35AD-0.webp",
+        "images/L35AD-1.webp",
+        "images/L35AD-2.webp"
+      ]
+    }
+  ]
+}
