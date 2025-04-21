@@ -280,7 +280,7 @@ p {
 
 .hero-subtitle {
     font-size: clamp(1.1rem, 3vw, 1.4rem);
-    font-weight: 300;
+    font-weight: 700;
     margin-bottom: calc(var(--spacing-unit) * 2);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
@@ -451,6 +451,7 @@ p {
 }
 
 /* --- About Section --- */
+
 .about-content {
     display: grid;
     grid-template-columns: 1fr; /* Default to single column */
