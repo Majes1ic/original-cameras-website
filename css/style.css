@@ -260,20 +260,6 @@ p {
     overflow: hidden; /* Prevent overlay bleed */
 }
 
-/*
-    .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Subtle gradient using logo colors - Adjust opacity and colors */
-    background: linear-gradient(45deg, rgba(102, 45, 145, 0.6), rgba(0, 95, 170, 0.5), rgba(243, 122, 32, 0.4));
-    z-index: 1;
-}
-
-*/
-
 .hero-content {
     position: relative; /* Above overlay */
     z-index: 2;
@@ -302,8 +288,8 @@ p {
 /* --- Featured Cameras Section --- */
 .camera-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: calc(var(--spacing-unit) * 2.5);
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--spacing-unit) * 3);
 }
 
 .camera-card {
@@ -321,11 +307,96 @@ p {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-.camera-image {
+/* Gallery Styles */
+.camera-gallery {
+    position: relative;
     width: 100%;
-    height: 250px; /* Fixed height for consistency */
-    object-fit: cover; /* Crop image nicely */
-    border-bottom: 1px solid var(--color-border);
+    height: 350px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.gallery-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.gallery-image.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    transition: background-color 0.3s ease;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.gallery-prev {
+    left: 15px;
+}
+
+.gallery-next {
+    right: 15px;
+}
+
+.gallery-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.gallery-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gallery-dot.active {
+    background-color: #fff;
 }
 
 .camera-info {

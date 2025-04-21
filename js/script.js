@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 navToggle.setAttribute('aria-expanded', 'false');
                 navList.classList.remove('is-open');
             }
-            // Smooth scroll handled by CSS `scroll-behavior: smooth;`
-            // Optional: Add active class update logic here if needed
         });
     });
 
@@ -30,8 +28,68 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // --- Gallery Functionality ---
+    const galleries = document.querySelectorAll('.gallery-container');
+    
+    galleries.forEach(gallery => {
+        const track = gallery.querySelector('.gallery-track');
+        const images = gallery.querySelectorAll('.gallery-image');
+        const prevButton = gallery.querySelector('.gallery-prev');
+        const nextButton = gallery.querySelector('.gallery-next');
+        const dotsContainer = gallery.querySelector('.gallery-dots');
+        
+        let currentIndex = 0;
+        
+        // Create dots
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('gallery-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        
+        const dots = gallery.querySelectorAll('.gallery-dot');
+        
+        function updateGallery() {
+            // Update images
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
+            });
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        function goToSlide(index) {
+            currentIndex = index;
+            updateGallery();
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateGallery();
+        }
+        
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateGallery();
+        }
+        
+        prevButton.addEventListener('click', prevSlide);
+        nextButton.addEventListener('click', nextSlide);
+        
+        // Auto-advance gallery every 5 seconds
+        let interval = setInterval(nextSlide, 5000);
+        
+        // Pause auto-advance on hover
+        gallery.addEventListener('mouseenter', () => clearInterval(interval));
+        gallery.addEventListener('mouseleave', () => interval = setInterval(nextSlide, 5000));
+    });
+
     // --- Optional: Intersection Observer for Fade-In Animations ---
-    // More performant than CSS animations triggering on everything at once
     const animatedElements = document.querySelectorAll('.camera-card, .step, .about-text, .about-image-container');
 
     if ('IntersectionObserver' in window) {
@@ -39,12 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.animationPlayState = 'running'; // Start animation
-                    // Optional: Unobserve after animation if it shouldn't repeat
-                    // observer.unobserve(entry.target);
-                } else {
-                     // Optional: Reset animation if you want it to replay when scrolling back up
-                     // entry.target.style.animationPlayState = 'paused';
-                     // You might need to reset opacity/transform here too if resetting
                 }
             });
         }, {
