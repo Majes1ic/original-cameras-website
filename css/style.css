@@ -46,7 +46,7 @@ body {
     color: var(--color-text); /* Default text color, might need adjustment based on background */
 
     /* Background Image Settings */
-    background-image: url('../images/background.jpg'); /* Path relative to the CSS file */
+    background-image: url('../images/background-1.jpg'); /* Path relative to the CSS file */
     background-size: cover; /* Scale image to cover the entire background */
     background-repeat: no-repeat; /* Prevent the image from tiling */
     background-position: center center; /* Center the image */
