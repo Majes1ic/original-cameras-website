@@ -129,7 +129,24 @@ p {
     text-align: center;
 }
 
-.section-title.light-text,
+.section-intro-light-text {
+    color: #fff;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.section-title.light-text {
+    color: var(--color-light-text);
+}
+
+.section-title-light {
+    color: #fff;
+}
+
 .section-intro.light-text {
     color: var(--color-light-text);
 }
