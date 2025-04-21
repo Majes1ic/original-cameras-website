@@ -125,44 +125,6 @@
             </div>
         </section>
 
-        <!-- Payment Benefits Section -->
-        <section class="payment-benefits section-padding">
-            <div class="container">
-                <h2 class="section-title">Purchase with Confidence</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h3>Secure Checkout</h3>
-                        <p>Safe and encrypted payment processing powered by Stripe</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                            </svg>
-                        </div>
-                        <h3>24/7 Support</h3>
-                        <p>Email support available around the clock for any questions</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                        </div>
-                        <h3>30 Day Returns</h3>
-                        <p>Free returns within 30 days for any reason</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Our Process Section -->
         <section id="process" class="our-process section-padding bg-light">
             <div class="container">
@@ -196,23 +158,52 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-       <section id="contact" class="contact-section section-padding bg-dark">
-           <div class="container text-center">
-               <h2 class="section-title light-text">Start Your Film Story</h2>
-               <p class="section-intro light-text">Have questions or looking for a specific model? Get in touch!</p>
-               <a href="mailto:hello@originalcameras.com" class="btn btn-primary">Contact Us</a>
-               <p class="est-date">Est. 2002</p>
-           </div>
-       </section>
 
-    </main>
-
-    <footer class="site-footer-bottom">
-        <div class="container">
-            <p>© <span id="current-year"></span> Original Cameras. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <footer class="site-footer">
+            <div class="container footer-content">
+                <!-- Left Side: Contact Section -->
+                <div class="footer-contact">
+                    <h3>Start Your Film Story</h3>
+                    <p>Have questions or looking for a specific model? Get in touch!</p>
+                    <a href="mailto:hello@originalcameras.com" class="btn btn-primary">Contact Us</a>
+                    <p class="est-date">Est. 2002</p>
+                </div>
+                
+                <!-- Right Side: Purchase with Confidence -->
+                <div class="footer-benefits">
+                    <h3>Purchase with Confidence</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <span>Secure Stripe Checkout</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>30 Day Returns</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>24/7 Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright Section -->
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <p>© <span id="current-year"></span> Original Cameras. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
 
     <script src="js/script.js"></script>
 </body>
