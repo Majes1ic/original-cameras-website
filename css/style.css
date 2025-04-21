@@ -43,10 +43,19 @@ body {
     font-family: var(--font-body);
     font-weight: 300;
     line-height: 1.7;
-    color: var(--color-text);
-    background-color: var(--color-bg);
+    color: var(--color-text); /* Default text color, might need adjustment based on background */
+
+    /* Background Image Settings */
+    background-image: url('../images/background.jpg'); /* Path relative to the CSS file */
+    background-size: cover; /* Scale image to cover the entire background */
+    background-repeat: no-repeat; /* Prevent the image from tiling */
+    background-position: center center; /* Center the image */
+    background-attachment: fixed; /* Fix the background relative to the viewport */
+    background-color: var(--color-bg-light); /* Fallback color if image fails */
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
 }
 
 /* --- Utilities --- */
