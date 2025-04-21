@@ -26,6 +26,21 @@
     --transition-speed: 0.3s ease;
 
     --container-width: 1140px;
+
+    /* Dark Mode Variables */
+    --dm-bg: #22242C; /* Dark background */
+    --dm-card-bg: #2C2E3A; /* Slightly lighter card background */
+    --dm-text: #d4d4d4; /* Light grey text */
+    --dm-heading: #ffffff; /* White headings */
+    --dm-border: #4a4a4a; /* Darker border */
+    --dm-primary: var(--color-primary); /* Keep primary orange */
+    --dm-primary-hover: #ff9a4d; /* Lighter orange for hover */
+    --dm-secondary: var(--color-secondary); /* Keep secondary cyan */
+    --dm-header-bg: rgba(34, 36, 44, 0.95); /* Dark semi-transparent header */
+    --dm-footer-bg: #1a1c23; /* Even darker footer */
+    --dm-light-bg-section: #2C2E3A; /* Replacement for bg-light */
+    --dm-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    --dm-overlay-color: rgba(34, 36, 44, 0.8); /* Dark overlay for background image */
 }
 
 *, *::before, *::after {
@@ -43,19 +58,12 @@ body {
     font-family: var(--font-body);
     font-weight: 300;
     line-height: 1.7;
-    color: var(--color-text); /* Default text color, might need adjustment based on background */
-
-    /* Background Image Settings */
-    background-image: url('../images/background-1.jpg'); /* Path relative to the CSS file */
-    background-size: cover; /* Scale image to cover the entire background */
-    background-repeat: no-repeat; /* Prevent the image from tiling */
-    background-position: center center; /* Center the image */
-    background-attachment: fixed; /* Fix the background relative to the viewport */
-    background-color: var(--color-bg-light); /* Fallback color if image fails */
-
+    color: var(--color-text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh; /* Ensure body takes at least full viewport height */
+    /* Set a basic fallback background for the whole page if needed, or leave it */
+    background-color: var(--color-bg-light); /* Or perhaps var(--color-bg) if you prefer white */
 }
 
 /* --- Utilities --- */
@@ -263,6 +271,132 @@ p {
     transition: all var(--transition-speed);
 }
 
+/* --- Theme Switch --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    /* Position it appropriately - adjust margin as needed */
+    margin-left: auto; /* Push it towards the right before nav */
+    margin-right: 1rem;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Width of the switch */
+    height: 24px; /* Height of the switch */
+    cursor: pointer;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Default background */
+    transition: .4s;
+    display: flex; /* To position icons */
+    align-items: center; /* Center icons vertically */
+    justify-content: space-between; /* Icons at ends */
+    padding: 0 4px; /* Padding for icons */
+    overflow: hidden; /* Hide overflowing icon parts */
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider:before { /* This is the moving knob */
+    position: absolute;
+    content: "";
+    height: 18px; /* Size of the knob */
+    width: 18px;
+    left: 3px; /* Initial position */
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    z-index: 2; /* Above icons */
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--logo-blue); /* Use a logo color when active */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--logo-blue);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px); /* Move knob to the right (width - knob_width - 2*padding/offset) */
+}
+
+/* Icons inside the slider */
+.slider .icon {
+    font-size: 12px; /* Adjust icon size */
+    line-height: 1;
+    z-index: 1; /* Below the knob */
+    transition: opacity 0.4s ease;
+}
+
+.slider .sun {
+    opacity: 1; /* Visible by default */
+}
+.slider .moon {
+    opacity: 0; /* Hidden by default */
+}
+
+input:checked + .slider .sun {
+    opacity: 0; /* Hide sun in dark mode */
+}
+input:checked + .slider .moon {
+    opacity: 1; /* Show moon in dark mode */
+}
+
+/* Responsive positioning adjustments */
+@media (max-width: 767px) {
+    .theme-switch-wrapper {
+        /* Position it before the hamburger menu */
+        order: 1; /* Change order relative to nav toggle */
+        margin-left: 1rem;
+        margin-right: 0.5rem;
+    }
+     .main-nav {
+        order: 2; /* Ensure nav comes after toggle */
+     }
+     .logo-link {
+        order: 0;
+     }
+     .header-container {
+         /* Ensure items align nicely on mobile */
+         justify-content: space-between;
+     }
+}
+
+/* --- Main content container with background --- */
+main {
+    /* Apply the background settings here */
+    background-image: url('../images/background-1.jpg'); /* Path relative to the CSS file */
+    background-size: contain; /* Scale image to cover the entire background */
+    background-repeat: no-repeat; /* Prevent the image from tiling */
+    background-position: center center; /* Center the image */
+    background-attachment: fixed; /* Fix the background relative to the viewport */
+    background-color: var(--color-bg-light); /* Fallback color if image fails */
+    /* Ensure main element occupies space correctly */
+    display: block; /* Default for main, but good to be explicit */
+}
 
 /* --- Hero Section --- */
 .hero-section {
@@ -706,3 +840,160 @@ p {
 }
 
 /* Selective animation application can be done better with JS + Intersection Observer */
+/* --- Dark Mode Theme --- */
+body.dark-mode {
+    background-color: var(--dm-bg);
+    color: var(--dm-text);
+}
+
+/* Apply dark overlay to main background image */
+body.dark-mode main {
+    background-image: linear-gradient(var(--dm-overlay-color), var(--dm-overlay-color)), url('../images/background-1.jpg');
+    /* Keep other background properties if needed, like size, attachment */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+
+/* Update specific elements */
+body.dark-mode .site-header {
+    background-color: var(--dm-header-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .main-nav .nav-link {
+    color: var(--dm-text);
+}
+ body.dark-mode .main-nav .nav-link:hover,
+ body.dark-mode .main-nav .nav-link.active {
+    color: var(--dm-heading);
+ }
+ body.dark-mode .nav-toggle span {
+     background-color: var(--dm-heading);
+ }
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+    color: var(--dm-heading);
+}
+
+body.dark-mode .section-title-light {
+    color: var(--dm-heading); /* Already light, ensure it's white */
+}
+
+body.dark-mode p {
+    color: var(--dm-text);
+}
+
+body.dark-mode .section-intro-light-text {
+     color: var(--dm-text);
+}
+
+
+body.dark-mode a {
+    color: var(--dm-primary);
+}
+
+body.dark-mode a:hover, body.dark-mode a:focus {
+    color: var(--dm-primary-hover);
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--dm-primary);
+    color: var(--dm-bg); /* Dark text on bright button */
+    box-shadow: 0 6px 20px rgba(243, 122, 32, 0.3);
+}
+ body.dark-mode .btn-primary:hover, body.dark-mode .btn-primary:focus {
+     background-color: var(--dm-primary-hover);
+     color: var(--dm-bg);
+     box-shadow: 0 8px 25px rgba(243, 122, 32, 0.4);
+ }
+
+body.dark-mode .btn-secondary {
+    color: var(--dm-primary);
+    border-color: var(--dm-primary);
+}
+body.dark-mode .btn-secondary:hover, body.dark-mode .btn-secondary:focus {
+    background-color: var(--dm-primary);
+    color: var(--dm-bg);
+}
+
+body.dark-mode .camera-card {
+    background-color: var(--dm-card-bg);
+    box-shadow: var(--dm-shadow);
+}
+ body.dark-mode .camera-card:hover {
+     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+ }
+
+body.dark-mode .camera-name {
+    color: var(--dm-heading);
+}
+
+body.dark-mode .camera-description {
+    color: var(--dm-text);
+}
+
+ body.dark-mode .gallery-prev,
+ body.dark-mode .gallery-next {
+     background-color: rgba(44, 46, 58, 0.8); /* Darker control background */
+     color: var(--dm-heading);
+ }
+ body.dark-mode .gallery-prev:hover,
+ body.dark-mode .gallery-next:hover {
+      background-color: rgba(44, 46, 58, 0.95);
+ }
+
+ body.dark-mode .gallery-dot {
+      background-color: rgba(255, 255, 255, 0.3);
+ }
+ body.dark-mode .gallery-dot.active {
+      background-color: var(--dm-heading);
+ }
+
+body.dark-mode .bg-light { /* Sections that were light grey */
+    background-color: var(--dm-light-bg-section);
+}
+
+body.dark-mode .step-title {
+     color: var(--dm-primary); /* Keep the primary color */
+}
+ body.dark-mode .step-description {
+     color: var(--dm-text);
+ }
+
+body.dark-mode .site-footer {
+    background-color: var(--dm-footer-bg);
+    color: var(--dm-text);
+}
+ body.dark-mode .footer-content {
+     /* Add top border if footer looks too merged with main */
+     /* border-top: 1px solid var(--dm-border); */
+ }
+ body.dark-mode .footer-contact h3, body.dark-mode .footer-benefits h3 {
+     color: var(--dm-heading);
+ }
+ body.dark-mode .footer-contact p, body.dark-mode .benefits-list span {
+     opacity: 0.8;
+ }
+ body.dark-mode .footer-benefits {
+     border-left-color: rgba(255, 255, 255, 0.15);
+ }
+ body.dark-mode .site-footer-bottom {
+     border-top-color: rgba(255, 255, 255, 0.15);
+ }
+ body.dark-mode .site-footer-bottom p {
+     opacity: 0.6;
+ }
+
+ /* Mobile nav background in dark mode */
+ @media (max-width: 767px) {
+     body.dark-mode .main-nav .nav-list {
+        background-color: var(--dm-card-bg);
+        border-top-color: var(--dm-border);
+     }
+     body.dark-mode .main-nav .nav-link {
+        border-bottom-color: var(--dm-border);
+     }
+  }

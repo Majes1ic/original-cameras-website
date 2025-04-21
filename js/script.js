@@ -89,6 +89,39 @@ document.addEventListener('DOMContentLoaded', () => {
         gallery.addEventListener('mouseleave', () => interval = setInterval(nextSlide, 5000));
     });
 
+    // --- Dark Mode Toggle ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme');
+
+    // Apply saved theme on load
+    if (currentTheme) {
+        body.classList.add(currentTheme); // Assumes saved theme is 'dark-mode' or nothing
+        if (currentTheme === 'dark-mode') {
+            themeToggle.checked = true;
+            body.classList.add('dark-mode'); // Ensure class is added if stored value is just 'dark-mode' string
+        }
+    } else {
+      // Optional: Check system preference if no setting saved
+      // const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // if (prefersDark) {
+      //   body.classList.add('dark-mode');
+      //   themeToggle.checked = true;
+      //   localStorage.setItem('theme', 'dark-mode'); // Optionally save system pref as initial state
+      // }
+    }
+
+    // Toggle theme on switch change
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light-mode'); // Explicitly save light mode state
+        }
+    });
+
     // --- Optional: Intersection Observer for Fade-In Animations ---
     const animatedElements = document.querySelectorAll('.camera-card, .step, .about-text, .about-image-container');
 
